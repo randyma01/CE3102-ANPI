@@ -1,26 +1,25 @@
-function [x, error, iter]=secante(f, x0, x1, tol, iterMax)
-  func = str2func(f);
-  error = tol + 1;
-  iter = 0; 
-  e = [];
-  while (error > tol)
-    if (iterMax <= iter)
-        disp("Limite maximo de iteraciones.")
-        break;
-    else
-        x = x0 - ( (x0 - x1) / (func(x1) - func(x0) ) );
-        x0 = x - 1;
-        x1 = x;
-    end
-    error = abs(func(x));
-    e = [e error];
-  end
-  %plot(1:iter, e)
-  %xlabel('iter (k)')
-  %ylabel('Error (|f(x_k)|)')
-  %title('Error del Metodo de la Secante')
-  
-end
-
-
-[x, error, iter]=secante('@(x)exp(x)-x-2',0,1,10^-8,3)
+function [x,k,error]=secante(f,xo,xi,tol,imax)  
+    pkg load symbolic 
+    syms x;
+    f1= matlabFunction(sym(f));  % Se obtiene la funcion
+    %df = matlabFunction(diff(sym(f1)))
+    k=0;
+    error=tol+1;
+    e=[];
+    while and(error>tol,k<imax)
+        num=(xi-xo);
+        den=(f1(xi)-f1(xo));
+        if (den==0)
+            x=[],k=[]; e=[];
+            display('La funcion se indefine en xo')
+        else
+            xn= xi - ((num./den)* f1(xi));
+            error= abs(xn);
+            e=[e error];
+            xo=xi;
+            xi=xn;
+            k=k+1;
+        endif
+    endwhile
+    plot(1:k,e)
+endfunction
