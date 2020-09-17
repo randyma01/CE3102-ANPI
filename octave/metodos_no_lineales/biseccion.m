@@ -1,4 +1,4 @@
-function [x, error, iter]=biseccion(f,a,b,tol)
+function [x, error, iter]=biseccion(f, a, b, tol)
   func = str2func(f);
   %func=@(x)exp(x)-x-2; % func %
   if (func(a)*func(b) <=0 )
@@ -26,6 +26,4 @@ function [x, error, iter]=biseccion(f,a,b,tol)
   end
 end
 
-
-[x, error, iter]=biseccion(0,2)
 [x, error, iter]=biseccion('@(x)exp(x)-x-2',0,2,10^-8)
