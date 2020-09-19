@@ -1,0 +1,1 @@
+clear all;close all;clc; %Read an image from diskimg = imread('clouds.jpg'); % Show the imagefigure(1)imshow(img) % Resize the image (make it 2x smaller than the original)img2 = imresize(img, 0.5); % Rotate the imageimg3 = imrotate(img, 45);% Show the original image rotated 45 degreesfigure(2)imshow(img3)
