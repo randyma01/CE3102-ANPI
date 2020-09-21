@@ -11,4 +11,4 @@ function [Sk,k]=maclaurin_ln(alpha,tol)
 end
 
 
-[Sk,k]=maclaurin_ln(0.5,10^-3)
+% [Sk,k]=maclaurin_ln(0.5,10^-3)

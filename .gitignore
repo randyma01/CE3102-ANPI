@@ -3,9 +3,10 @@
 # module: codes #
 
 # misc #
+.idea
+.idea/
 .vscode
 octave-workspace
 **/.DS_Store
 .DS_Store
-
 # ------------------------- #
