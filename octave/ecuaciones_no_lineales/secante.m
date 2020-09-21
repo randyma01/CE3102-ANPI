@@ -1,4 +1,4 @@
-function [x,k,error]=secante(f,xo,xi,tol,imax)  
+function [x,k,error]=secante(f,xo,xi,tol,imax)    
     pkg load symbolic 
     syms x;
     f1= matlabFunction(sym(f));  % Se obtiene la funcion
@@ -23,3 +23,5 @@ function [x,k,error]=secante(f,xo,xi,tol,imax)
     endwhile
     plot(1:k,e)
 endfunction
+
+% [x,k,error]=secante(exp(-(x.^2))-x,0,1,10^-8,3)
