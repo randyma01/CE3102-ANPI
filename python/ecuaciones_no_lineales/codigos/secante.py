@@ -1,31 +1,31 @@
 from sympy import *
-def secante(f,xo,xi,tol,iterMax):
-    import matplotlib.pyplot
-    
+import matplotlib.pyplot
+
+
+def secante(f, xo, xi, tol, iterMax):
     x = Symbol('x')
-    f1=sympify(f)
-    ##df=diff(f1) 
-    error=tol+1
-    k=0
-    it=[]
-    e=[]
-    while error>tol and k<iterMax:
-        k=k+1
-        num=(xi-xo)
-        den=f1.evalf(subs={x: xi})-f1.evalf(subs={x: xo})
-        if(den==0):
-            m=[]
-            it=[]
-            e=[]
-            display('La funcion se indefine')
+    f1 = sympify(f)
+    error = tol + 1
+    k = 0
+    it = []
+    e = []
+    while (error > tol and k < iterMax):
+        k = k + 1
+        num = (xi - xo)
+        deno = f1.subs('x', xi) - f1.subs('x', xo)
+        if (deno == 0):
+            it = []
+            e = []
+            print('La funcion se indefine.')
         else:
-            xn=xi-((num)/(den))*((f1.evalf(subs={x: xi})))
+            f1_eval = f1.subs('x', xi)
+            xn = xi - ((num) / (deno)) * (f1_eval)
             error = abs(xn)
             it.append(k)
             e.append(error)
-            xo=xi
-            xi=xn
+            xo = xi
+            xi = xn
     matplotlib.pyplot.plot(it, e)
-    return [x,k,e]
+    return [x, k, e]
 
-secante('exp(-(x**2))-x',0,1,10**-8,3)
+# secante('exp(-(x**2))-x',0,1,10**-8,3)

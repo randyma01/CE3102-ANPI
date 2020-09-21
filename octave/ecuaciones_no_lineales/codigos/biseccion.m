@@ -8,7 +8,7 @@ function [x, error, iter]=biseccion(f, a, b, tol)
     e = [];
     while (error > tol) 
       iter = iter + 1;
-      x = (a + b)/2;
+      x = (a + b) / 2;
       if (func(a) * func(x) <= 0) 
         b = x;
       else 
@@ -22,7 +22,7 @@ function [x, error, iter]=biseccion(f, a, b, tol)
     ylabel('Error (|f(x_k)|)')
     title('Error del Metodo de la Biseccion')
   else
-    display('No cumple la condicion del Teorema de Bolzano.')  
+    display('No cumple la condición del Teorema de Bolzano.')  
   end
 end
 

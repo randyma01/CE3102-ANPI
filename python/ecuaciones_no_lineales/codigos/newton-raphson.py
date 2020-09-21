@@ -1,30 +1,36 @@
 from sympy import *
+import matplotlib.pyplot
 
-def newton(f, xo, tol, iterMax):
-    import matplotlib.pyplot
 
-    x = Symbol('x')
+def newton_raphson(f, xo, tol, iterMax):
     f1 = sympify(f)
     df = diff(f1)
-
     error = tol + 1
     k = 0
     it = []
     e = []
-    while error > tol and k < iterMax:
+    while (error > tol and k < iterMax):
         k = k + 1
-        if (df.evalf(subs={x: xo}) == 0):
+        deno = df.subs('x', xo)
+        if (deno == 0):
             x = []
             k = []
             error = []
-            print('La funcion se indefine en xo')
+            print('La funcion se indefine.')
+            break
         else:
-            xn = xo - (f1.evalf(subs={x: xo}) / df.evalf(subs={x: xo}))
+            nume = f1.subs('x', xo)
+            xn = xo - nume/deno
             error = abs(xn)
             it.append(k)
             e.append(error)
             xo = xn
     matplotlib.pyplot.plot(it, e)
-    return [x, k, error]
+    ans = {
+        "x": xn,
+        "k": k,
+        "error": error
+    }
+    return ans
 
-newton('cos(2*x)**2-x**2',3/4,10**-8,10)
+# newton_raphson('cos(2*x)**2-x**2',3/4,10**-8,10)

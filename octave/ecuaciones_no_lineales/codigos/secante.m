@@ -1,4 +1,4 @@
-function [x, k, error]=secante(f, xo, xi, tol, imax)    
+function [x, k, error]=secante(f, xo, xi, tol, iterMax)    
     pkg load symbolic 
     syms x;
 
@@ -6,7 +6,7 @@ function [x, k, error]=secante(f, xo, xi, tol, imax)
     k = 0;
     error = tol + 1 ;
     e = [];
-    while (error > tol && k < imax)
+    while (error > tol && k < iterMax)
         num = (xi - xo);
         deno = (f1(xi) - f1(xo));
         if (deno == 0)
@@ -14,6 +14,7 @@ function [x, k, error]=secante(f, xo, xi, tol, imax)
             k=[];
             e=[];
             disp('La función se indefine.')
+            break;
         else
             xn = xi - ((num./deno)* f1(xi));
             error = abs(xn);

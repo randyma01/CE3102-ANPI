@@ -1,4 +1,4 @@
-function [x, k, error]=newton_raphson(f, xo, tol, imax) 
+function [x, k, error]=newton_raphson(f, xo, tol, iterMax) 
     pkg load symbolic 
     syms x;
 
@@ -12,13 +12,14 @@ function [x, k, error]=newton_raphson(f, xo, tol, imax)
     k = 0;
     error = tol + 1;
     e = [];
-    while (error > tol && k < imax)
+    while (error > tol && k < iterMax)
         deno = df(xo);
         if (deno == 0)
             x = [];
             k=[]; 
             error=[];
             disp('La función se indefine.')
+            break;
         else
             xn = xo - (f1(xo)/deno);
             error = abs(xo - (f1(xo)/deno));
