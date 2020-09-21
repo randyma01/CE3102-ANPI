@@ -2,35 +2,28 @@ from sympy import *
 import matplotlib.pyplot
 
 
-def newton_raphson(f, xo, tol, iterMax):
+def secante(f, xo, xi, tol, iterMax):
     f1 = sympify(f)
-    df = diff(f1)
     error = tol + 1
     k = 0
     it = []
     e = []
     while (error > tol and k < iterMax):
         k = k + 1
-        deno = df.subs('x', xo)
+        num = (xi - xo)
+        deno = f1.subs('x', xi) - f1.subs('x', xo)
         if (deno == 0):
-            x = []
-            k = []
-            error = []
+            it = []
+            e = []
             print('La funcion se indefine.')
-            break
         else:
-            nume = f1.subs('x', xo)
-            xn = xo - nume/deno
+            f1_eval = f1.subs('x', xi)
+            xn = xi - ((num) / (deno)) * (f1_eval)
             error = abs(xn)
             it.append(k)
             e.append(error)
-            xo = xn
+            xo = xi
+            xi = xn
     matplotlib.pyplot.plot(it, e)
-    ans = {
-        "x": xn,
-        "k": k,
-        "error": error
-    }
-    return ans
 
-# newton_raphson('cos(2*x)**2-x**2',3/4,10**-8,10)
+# secante('exp(-(x**2))-x',0,1,10**-8,3)
