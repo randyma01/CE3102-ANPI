@@ -1,14 +1,12 @@
-function [x, error, k] = biseccion(f, a, b, tol)
+function [x, k, error] = falsa_posicion(f, a, b, tol, iterMax)
   func = str2func(f);
-  %func=@(x)exp(x)-x-2;
   if (func(a) * func(b) <= 0)
-    %tol = 10^-8;
-    error = tol + 1;
-    k = 0; 
+    k = 0;
+    err = tol + 1;
     e = [];
     while (tol < error) 
-      x = (a + b) / 2;
-      if (func(a) * func(x) <= 0) 
+      x = b - (((b - a ) / (func(b) - func(a))) * func(b));
+      if (func(a) * func(x) < 0)
         b = x;
       else 
         a = x;
@@ -20,10 +18,10 @@ function [x, error, k] = biseccion(f, a, b, tol)
     plot(1:k, e)
     xlabel('iter (k)')
     ylabel('Error (|f(x_k)|)')
-    title('Error del Metodo de la Biseccion')
+    title('Error del Metodo de la Falsa Posicion')
   else
     display('No cumple la condición del Teorema de Bolzano.')  
   end
 end
 
-% [x, err, iter] = biseccion('@(x)exp(x)-x-2',0,2,10^-8)
+% [x, k, error] = falsa_posicion('@(x)cos(x)-x',1/2,pi/4,10^-8,40) 

@@ -3,6 +3,7 @@ function [Sk,k]=maclaurin_ln(alpha,tol)
   k=1;
   error=tol+1;
   while error>=tol
+    k
     Sk_new=Sk+((-1)^(k-1)/k)*(alpha-1)^k;
     error=abs(Sk_new-Sk);
     Sk=Sk_new;
