@@ -1,18 +1,18 @@
 function [x, k, error] = falsa_posicion(f, a, b, tol, iterMax)
-  func = str2func(f);
-  if (func(a) * func(b) <= 0)
+  func = matlabFunction(sym(f));
+  if (func(a) * func(b) < 0)
     k = 0;
-    err = tol + 1;
+    error = tol + 1;
     e = [];
-    while (tol < error) 
+    while (tol < error && k < iterMax)
       x = b - (((b - a ) / (func(b) - func(a))) * func(b));
-      if (func(a) * func(x) < 0)
-        b = x;
-      else 
-        a = x;
-      end  
       error = abs(func(x));
       e = [e error];
+      if (func(a) * func(x) < 0)
+        b = x;
+      else
+        a = x;
+      end
       ++k;
     end
     plot(1:k, e)
@@ -20,8 +20,8 @@ function [x, k, error] = falsa_posicion(f, a, b, tol, iterMax)
     ylabel('Error (|f(x_k)|)')
     title('Error del Metodo de la Falsa Posicion')
   else
-    display('No cumple la condición del Teorema de Bolzano.')  
+    display('No cumple la condición del Teorema de Bolzano.')
   end
 end
 
-% [x, k, error] = falsa_posicion('@(x)cos(x)-x',1/2,pi/4,10^-8,40) 
+% [x, k, error] = falsa_posicion(cos(x)-x,1/2,pi/4,10^-8,40) 
