@@ -3,27 +3,26 @@ import matplotlib.pyplot
 from sympy import *
 
 
-def secante(f, xo, xi, tol, iterMax):
+def newton(f, xo, tol, iterMax):
     x = Symbol('x')
     f1 = sympify(f)
+    df = diff(f1)
     error = tol + 1
     k = 0
     it = []
     e = []
     while (tol < error and k < iterMax):
-        nume = (xi - xo)
-        deno = f1.evalf(subs={x: xi})-f1.evalf(subs={x: xo})
-        if(deno == 0):
-            it = []
-            e = []
-            print("La funcion se indefine.")
+        if (df.evalf(subs={x: xo}) == 0):
+            x = []
+            k = []
+            error = []
+            print("La funcion se indefine en xo.")
         else:
-            xn = xi - ((nume) / (deno)) * ((f1.evalf(subs={x: xi})))
+            xn = xo - (f1.evalf(subs={x: xo}) / df.evalf(subs={x: xo}))
             error = abs(xn)
             it.append(k)
             e.append(error)
-            xo = xi
-            xi = xn
+            xo = xn
         k += 1
     matplotlib.pyplot.plot(it, e)
     ans = {
@@ -33,4 +32,4 @@ def secante(f, xo, xi, tol, iterMax):
     }
     return ans
 
-# secante('exp(-(x**2))-x',0,1,10**-8,3)
+# newton('cos(2*x)**2-x**2',3/4,10**-8,10)

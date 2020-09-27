@@ -1,5 +1,6 @@
-from sympy import sympify
+import math
 import matplotlib.pyplot
+from sympy import *
 
 
 def biseccion(f, a, b, tol, iterMax):
@@ -16,7 +17,7 @@ def biseccion(f, a, b, tol, iterMax):
         k = 0
         it = []
         e = []
-        while (error > tol and k < iterMax):
+        while (tol < error and k < iterMax):
             k = k + 1
             x = (a + b) / 2
             fa = f1.subs('x', a)
@@ -24,7 +25,7 @@ def biseccion(f, a, b, tol, iterMax):
             error = abs(fx)
             it.append(k)
             e.append(error)
-            if (fa*fx < 0):
+            if (fa * fx < 0):
                 b = x
             else:
                 a = x
