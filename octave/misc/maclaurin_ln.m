@@ -1,6 +1,7 @@
 function [Sk,k]=maclaurin_ln(alpha,tol)
   Sk=0;
   k=1;
+  tol = 10^-8
   error=tol+1;
   while error>=tol
     k
@@ -12,4 +13,4 @@ function [Sk,k]=maclaurin_ln(alpha,tol)
 end
 
 
-% [Sk,k]=maclaurin_ln(0.5,10^-3)
+% [Sk,k]=maclaurin_ln(0.5)
