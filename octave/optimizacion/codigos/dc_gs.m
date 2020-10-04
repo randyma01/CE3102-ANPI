@@ -1,9 +1,14 @@
 function [x, error, k] = dc_gs(f, t, x_t, tol, iterMax)
   fs = sym(f);
   gr = gradient(fs, [x, y, z]);
+
+  xk = x_t(1,3)
+  yk = x_t(1,3)
+  zk = x_t(1,3)
+
   k = 0;
   e = []
-  
+
   while (tol < error && k < iterMax) 
 
     fx = @(x) f(x, yk, zk);
@@ -15,7 +20,7 @@ function [x, error, k] = dc_gs(f, t, x_t, tol, iterMax)
     p1 = subs(gr, [x y z], [sym(xk, 'r') sym(yk, 'r') sym(zk, 'r')]); 
     p2 = double(p1); 
 
-    error = norm(p2) 
+    error = norm(p2); 
 
     e = [e error]; 
     ++k;
