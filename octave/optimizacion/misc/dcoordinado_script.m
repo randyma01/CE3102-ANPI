@@ -27,7 +27,7 @@ zk = 1;
 iter = 10;
 
 % vector de error
-e = []
+e = [];
 
 for (i = i : iter)
     % actulizar el valor de xk, minimizando f(x, yk, zk)
@@ -42,7 +42,8 @@ for (i = i : iter)
     fz = @(z) f(xk, yk, z);
     zk = fminsearch(fz, zk);
 
-    %display([i xk yk zk])
+    % vector
+    display([i xk yk zk])
 
     %% evaluar el punto (xk, yk, zk) en el gradiente y calcular su norma %%
     
@@ -51,7 +52,7 @@ for (i = i : iter)
     p2 = double(p1); % convertir en double
 
     % calcular la norma
-    error = norm(p2) 
+    error = norm(p2); 
 
     % actualizando vector del errror
     e = [e error]; 
