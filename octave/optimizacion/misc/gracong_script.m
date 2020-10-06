@@ -27,39 +27,47 @@ yk = 3;
 
 gk = double(subs(gr, [x y], [sym(xk,'r') sym(yk, 'r')])); % en octave obtengo un vector columna
 
+% transpuesta
 dk = - gk;
 
 % iteraciones 
-iter = 10;
+iter = 3;
 
 for (i = 1 : iter)
-
-    % calcular el xk
-    x_t = [xk; yk]';
-
-    % calcular z_t = x_t + alpha * dk
-    z_t = x_t + ak * dk...m
-
-    % calculcar el alpha_k
+    % Calcular el valor de alpha_k
     ak = 1;
 
-    % calcular el delta
-    delta = rand(1);
+    x_t = [xk yk]';
 
-    % parte de la izquierda
-    izq = subs(fs, [x y], [sym(z_t(1, 'r') sym(z_t(2, 'r')))])
+    % (calcular z_t = x_t + alpha * dk)
+    z_t = x_t + ak * dk;
+
+     % Calcualr el valor de delta, de manera aleatoria 
+    delta = rand(1)
+    
+    % calculo de la desigualdad
+    izq = double(subs(fs, [x y], [sym(z_t(1), 'r') sym(z_t(2), 'r')])) - double(subs(fs, [x y], [sym(x_t(1), 'r') sym(x_t(2), 'r')]));
+    der = delta * ak * gk' * dk;
+
+    while(der < izq)
+        ak = ak/2;
+        z_t = x_t + ak * dk;
+        izq = double(subs(fs, [x y], [sym(z_t(1), 'r') sym(z_t(2), 'r')])) - double(subs(fs, [x y], [sym(x_t(1), 'r') sym(x_t(2), 'r')]));
+        der = delta * ak * gk' * dk;
+    end
 
     % calcular el xk y yk (x_t = [xk yk]^T)
-    x_t = x_t + ak * dk;
+    x_t = x_t + (ak * dk);
 
     % actualizar el dk para la siguiente iteraciones d^(k + 1) = -g^(k+1) + betak * d^(k)
-    gk_new = double(subs(gr, [x y], [sym(x_t(1),'r') sym(x_t(2), 'r')]));
-    
-    % beta
-    beta = norm(gk_new)^2/norm(gk)^2;
+    gk_new = double(subs(gr, [x y], [sym(x_t(1), 'r') sym(x_t(2), 'r')]));
 
-    dk = -gk_new + beta * dk;
+    % calcular el valor de beta
+    beta = norm(gk_new)^2 / norm(gk)^2;
 
+    dk = -gk_new + (beta * dk);
+
+    % actualizando la nueva iteracion
     gk = gk_new;
 
     display(x_t')
