@@ -1,4 +1,4 @@
-function [x, k, error] = secante(f, xo, xi, tol, iterMax)    
+function [xn, k, error] = secante(f, xo, xi, tol, iterMax)    
     syms x;
     f1 = matlabFunction(sym(f));
     k = 0;

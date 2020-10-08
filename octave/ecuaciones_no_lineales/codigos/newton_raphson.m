@@ -1,4 +1,4 @@
-function [x, k, error] = newton_raphson(f, xo, tol, iterMax)
+function [xn, k, error] = newton_raphson(f, xo, tol, iterMax)
    syms x;
     % forma 1 %
     %f1 = str2func(f);
