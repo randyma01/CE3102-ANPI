@@ -28,10 +28,10 @@ yk = 3;
 gk = double(subs(gr, [x y], [sym(xk,'r') sym(yk, 'r')])); % en octave obtengo un vector columna
 
 % transpuesta
-dk = - gk;
+dk = -gk;
 
 % iteraciones 
-iter = 3;
+iter = 5;
 
 for (i = 1 : iter)
     % Calcular el valor de alpha_k
@@ -39,21 +39,24 @@ for (i = 1 : iter)
 
     x_t = [xk yk]';
 
-    % (calcular z_t = x_t + alpha * dk)
+    % calcular z_t = x_t + alpha * dk
     z_t = x_t + ak * dk;
 
      % Calcualr el valor de delta, de manera aleatoria 
-    delta = rand(1)
+    delta = rand(1);
     
     % calculo de la desigualdad
     izq = double(subs(fs, [x y], [sym(z_t(1), 'r') sym(z_t(2), 'r')])) - double(subs(fs, [x y], [sym(x_t(1), 'r') sym(x_t(2), 'r')]));
     der = delta * ak * gk' * dk;
 
-    while(der < izq)
-        ak = ak/2;
+    k = 0
+    while(izq > der)
+        k
+        ak = ak/10;
         z_t = x_t + ak * dk;
         izq = double(subs(fs, [x y], [sym(z_t(1), 'r') sym(z_t(2), 'r')])) - double(subs(fs, [x y], [sym(x_t(1), 'r') sym(x_t(2), 'r')]));
         der = delta * ak * gk' * dk;
+        ++k;
     end
 
     % calcular el xk y yk (x_t = [xk yk]^T)
@@ -63,12 +66,24 @@ for (i = 1 : iter)
     gk_new = double(subs(gr, [x y], [sym(x_t(1), 'r') sym(x_t(2), 'r')]));
 
     % calcular el valor de beta
-    beta = norm(gk_new)^2 / norm(gk)^2;
+    beta = norm(gk_new)^2/norm(gk)^2;
 
-    dk = -gk_new + (beta * dk);
+    dk = -gk_new + beta * dk;
 
     % actualizando la nueva iteracion
     gk = gk_new;
 
-    display(x_t')
+    % evaluar el grandiente
+    p1 = subs(gr, [x y], [sym(x_t(1), 'r') sym(x_t(2), 'r')]);
+    p2 = double(p1); % convertir en double
+
+    % calcular la norma
+    error = norm(p2); 
+
+    % actualizando vector del errror
+    e = [e error]; 
+    display(x_t');
 end
+
+% grafica del error
+plot(1 : iter, error)

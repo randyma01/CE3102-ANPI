@@ -8,8 +8,8 @@ function [x_t, error, k] = dc_gs(f, t, x0, tol, iterMax)
 
   gr = gradient(fs, [x, y, z]);
 
-  xk = x0(1,3);
-  yk = x0(1,3);
+  xk = x0(1,1);
+  yk = x0(1,2);
   zk = x0(1,3);
 
   k = 0;

@@ -2,6 +2,7 @@
 # proj: ce3102-anpi #
 
 # misc #
+/.idea/
 .idea
 .idea/
 .vscode
