@@ -1,69 +1,28 @@
-function [x] = e_gauss(A,b)
+function x = e_gauss(A,b)
 
-    len_A = size(A);
-    s = size(A);
+    dim = size(A);
 
-    % verifica que sea cuadrada
-    if (s(1)!= s(2))
-        display('A no es nxn');
-        clear x;
-        return;
-    end
+    if (dim(1) == dim (2))
+        n = length(b); 
+        x = zeros(n, 1);
 
-    % verifica que haya un vector de igualdad
-    n = s(1);
-    if n~=s(1)
-        display('b no es vector columna.');
-        return;
-    end
-    
-    %columan a de ceros
-    x = zeros(n,1);
+        mat_aug = [A b]
 
-    % matriz aumentada
-    mat_aum = [A b]
-
-    % copia de la matriz
-    temp_mat = mat_aum;
-
-    for (i = 2 : len_A(1) )
-        temp_mat(1,:) = temp_mat(1,:)/max(temp_mat(1,:))
-        temp = find(abs(temp_mat) - max(abs(temp_mat(:,1))));
-
-        if (2 < length(temp))
-            for ( j = 1 : length(temp) - 1)
-                if (j != temp(j))
-                    maxi = j; 
-                    break;
-                end
-            end
-        else 
-            maxi = 1;
+        for (j = 1 : n - 1)
+            for (i = j+1 : n)  
+                if (A(i, j) != 0)  
+                    lambda = A(i, j) / A(j, j);  
+                    A(i, j + 1 : n) = A(i, j + 1 : n) - (lambda * A(j, j + 1 : n));  
+                    b(i)= b(i) - (lambda * b(j));  
+            end  
         end
-
-        if (maxi!= 1)
-            temp = temp_mat(maxi,:);
-            temp_mat(maxi,:) = temp_mat(1,:);
-            temp_mat(1,:) = temp;
-        end
-
-        for j=2:length(temp_mat)-1
-            temp_mat(j,:) = temp_mat(j,:)-temp_mat(j,1)/temp_mat(1,1)*temp_mat(1,:);
-            if temp_mat(j,j)==0 || isnan(temp_mat(j,j)) || abs(temp_mat(j,j))==Inf
-                fprintf('Error.\n');
-                clear x;
-                return
-            end
-        end
-        mat_aum(i-1:end,i-1:end) = temp_mat;
-        temp_mat = temp_mat(2:end,2:end);
+        %matA = mat_aug( : , 1 : end - 1)
+        %vecB = mat_aug(:, end)
+        x = sust_atras(A, b);  
+    %else
+        %disp('No es una matriz cuadrada.');
     end
-
-    x(end) = mat_aum(end,end)/mat_aum(end,end-1);
-    for i=n-1:-1:1
-        x(i) = (mat_aum(i,end)-dot(mat_aum(i,1:end-1),x))/mat_aum(i,i);
-    end
- 
 end
-
-% x = e_gauss([1 -1 5;0 3 13;0 0 -13],[7; 13;-13])
+% A = [2, -6, 12, 16; 1, -2, 6, 6; -1, 3, -3, -7; 0, 4, 3, -6]
+% b = [70; 26; -30; -26]
+% x = e_gauss(A, b)
