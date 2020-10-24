@@ -7,9 +7,15 @@ function  x = fact_lu(A, b)
         return;
     end
 
+    if (vf_det_sub(A) != 1)
+        x = 0;
+        return;
+    end
+
+
     L = eye(n);
     P = eye(n);
-    U = A
+    U = A;
 
     for (i = 1: m)    
         if (U(i, i) == 0)
@@ -44,11 +50,15 @@ function  x = fact_lu(A, b)
         end
     end
 
-    L, U
-    y = sust_adelante(L,b)
+    %L, U
+    y = sust_adelante(L,b);
     x = sust_atras(U,y);
 end
 
 % A = [4, -2, 1; 20, -7, 12; -8, 13, 17]
 % b = [11; 70; 17]
+
+% A = [2, 3, 4; 4, 5, 10; 4, 8, 2]
+% b = [6; 16; 2]
+
 % x = fact_lu(A, b)
