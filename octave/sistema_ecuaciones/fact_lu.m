@@ -2,12 +2,13 @@ function  x = fact_lu(A, b)
     [m, n] = size(A);
 
    if (m != n)
-        display("La matriz no es cuadrada")
+        display("La matriz no es cuadrada.")
          x = 0;
         return;
     end
 
     if (vf_det_sub(A) != 1)
+        display("No cumple la condicion de determinantes de las submatrices.")
         x = 0;
         return;
     end
