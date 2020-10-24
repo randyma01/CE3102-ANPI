@@ -9,9 +9,9 @@ function [r, k, error] = muller(f, x0, x1, x2, tol, iterMax)
         c = f1(x2);
         dis = sqrt((b.^2) - 4 * a * c);
         if (b < 0)
-            r = x2 - ((2 * c)/( b - dis))
+            r = x2 - ((2 * c) / ( b - dis))
         else
-            r = x2 - ((2 * c)/(b + dis))
+            r = x2 - ((2 * c) / (b + dis))
         end
         error = abs(f1(r));
         e = [e error];

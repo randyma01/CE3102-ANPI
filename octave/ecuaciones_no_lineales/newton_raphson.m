@@ -19,8 +19,8 @@ function [xn, k, error] = newton_raphson(f, xo, tol, iterMax)
             disp('La función se indefine.')
             break;
         else
-            xn = xo - (f1(xo)/deno);
-            error = abs(xo - (f1(xo)/deno));
+            xn = xo - (f1(xo) / deno);
+            error = abs(xo - (f1(xo) / deno));
             e = [e error];
             xo = xn;
             ++k;
