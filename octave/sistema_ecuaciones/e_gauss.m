@@ -3,7 +3,13 @@ function x = e_gauss(A,b)
 
     if (m != n)
         display("La matriz no es cuadrada.")
-         x = 0;
+        x = 0;
+        return;
+    end
+
+    if( det(A) == 0)
+        display("La matriz no es invertible.")
+        x = 0;
         return;
     end
 

@@ -7,6 +7,12 @@ function  x = fact_lu(A, b)
         return;
     end
 
+    if( det(A) == 0)
+        display("La matriz no es invertible.")
+        x = 0;
+        return;
+    end
+
     if (vf_det_sub(A) != 1)
         display("No cumple la condicion de determinantes de las submatrices.")
         x = 0;
@@ -21,7 +27,6 @@ function  x = fact_lu(A, b)
     for (i = 1: m)    
         if (U(i, i) == 0)
             maximum = max(abs(U(i : end, 1)))
-            maximum
             for (k = 1 : n)
                if (maximum == abs(U(k, i)))
                    temp = U(1, :);
