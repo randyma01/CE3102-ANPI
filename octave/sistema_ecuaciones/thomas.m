@@ -7,8 +7,8 @@ function x = thomas(A, d)
         return;
     end
 
-    if( A != A')
-        display("No es una matriz simetrica.")
+     if( det(A) == 0)
+        display("La matriz no es invertible.")
         x = 0;
         return;
     end
