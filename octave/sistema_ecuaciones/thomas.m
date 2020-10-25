@@ -1,4 +1,4 @@
-function [x] = thomas(A, d)
+function x = thomas(A, d)
     [m, n] = size(A);
 
     if (m != n)
@@ -19,8 +19,6 @@ function [x] = thomas(A, d)
         return;
     end
 
-    A
-
     a = [0];
     a = [a diag(A, -1)'];
 
@@ -31,30 +29,24 @@ function [x] = thomas(A, d)
 
     d = d';
 
-    x = zeros(n, 1);  
+    w(1) = b(1);
+    g(1) = d(1) / w(1);
+
+    for (i = 2 : n)
+        w(i) = b(i) - a(i) * c(i - 1) / w(i - 1); 
+        g(i) = (d(i) - a(i) * g(i - 1)) / w(i);
+    end
+
+    x(n) = g(n); 
+
+    for (i = n - 1 : -1 : 1)
+        x(i) = g(i) - c(i)*x(i+1)/w(i);
+    end
     
-    c(1) = c(1) / b(1);  
-
-    for (i = 2 : n - 1)  
-        (b(i) - a(i) * c(i - 1))  
-        c(i) = c(i) / (b(i) - a(i) * c(i - 1))  
-    end  
-
-    d(1) = d(1) / b(1);
-
-    for (i = 2 : n)  
-        d(i) = (d(i) - a(i) * d(i - 1)) / (b(i) - a(i) * c(i - 1));  
-    end  
-
-    x(n) = d(n); 
-
-    for (i = n - 1: -1 : 1) 
-        x(i) = d(i) - c(i) * x(i + 1);  
-    end  
 end
 
-% A = [1, 2, 0, 0; -1, 4, 3, 0; 0, 2, 1, 1; 0, 0, 1, 2]
-% d = [1; 1; 1; 1]
+% A = [7, 5, 0, 0; 2, -8, 1, 0; 0, 6, 4, 3; 0, 0, 9, 8]
+% d = [6; 5; 7; 8]
 
     % a = [0; -1; 2; 1]
     % b = [1; 4; 1; 2]
@@ -66,7 +58,9 @@ end
     % c = [4, 1, 1, 1, 2, 0]
     % d = [13, 10, 20, 16, 35, 17]
 
-
-% x = thomas(a, b, c, d)
+    % a = [0 2 6 9];
+    % b = [7 -8 4 8];
+    % c = [5 1 3 0];
+    % d = [6 5 7 8];
 
 % x = thomas(A, d)
