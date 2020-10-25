@@ -1,10 +1,10 @@
 function  x = cholesky(A, b)
     [m, n] = size(A);
 
-   if (m != n)
-        display("La matriz no es cuadrada.")
-        x = 0;
-        return;
+    if (m != n)
+            display("La matriz no es cuadrada.")
+            x = 0;
+            return;
     end
 
     if( A != A')

@@ -1,11 +1,11 @@
 function  x = fact_lu(A, b)
     [m, n] = size(A);
 
-   if (m != n)
-        display("La matriz no es cuadrada.")
-         x = 0;
-        return;
-    end
+    if (m != n)
+            display("La matriz no es cuadrada.")
+            x = 0;
+            return;
+        end
 
     if( det(A) == 0)
         display("La matriz no es invertible.")
