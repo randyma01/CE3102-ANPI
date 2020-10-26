@@ -58,6 +58,9 @@ function xk = jacobi(A, b)
         % declaracion: vector inicial %
         x0 = zeros(m, 1);
 
+        % asignacion: vector resultante %
+        xk = x0;
+
         % declaracion: matrices M y N %
         M = diag((diag(A)));
         N = M - A;
@@ -65,9 +68,6 @@ function xk = jacobi(A, b)
         % declaracion: matriz inversa de M %
         d = diag(M);
         Minv = diag(1./d);
-
-        % asignacion: vector resultante %
-        xk = x0;
 
         % declaracion: tolerancia %
         tol = 10^-8;
@@ -79,11 +79,13 @@ function xk = jacobi(A, b)
         % declaracion: numero de iteraciones realizadas %
         iter = 0;
 
+        % itereacion: mientras el error sea mayoer que la tolerancia se ejecuta %
+        % la siguiente serie %
         while(tol < err)
-            xk = (Minv * N * xk) + (Minv * b);
-            err = norm(A * xk - b);
-            e = [e err];
-            ++iter;
+            xk = (Minv * N * xk) + (Minv * b); % formula de jacobi
+            err = norm(A * xk - b); % calculo del error absoluto mediante la norma 2
+            e = [e err]; % actualizacion del vector de error
+            ++iter; % aumento del contador de iteraciones realizadas
         end
 
         % numero de iteraciones %
