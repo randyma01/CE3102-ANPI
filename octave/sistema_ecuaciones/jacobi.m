@@ -26,7 +26,7 @@
 %   xk = vector de incognitas
 
 function xk = jacobi(A, b)
-    % declaracion: vector resultante
+    % declaracion: vector resultante %
     xk = [];
 
     % calculo: dimensiones de la matriz A %
@@ -42,7 +42,7 @@ function xk = jacobi(A, b)
         display("La matriz no es invertible.")
         return;
 
-    % verificacion: la matriz debe ser diagnonalmente dominante
+    % verificacion: la matriz debe ser diagnonalmente dominante %
     elseif(!vf_diag_dom(A, m))
         display("La matriz no es diagonalmente dominante.")
         return;
@@ -52,31 +52,31 @@ function xk = jacobi(A, b)
         display("El vector de coeficientes no coincide.")
         return;
     
-    % si cumple las conficiones, ejecuta el metodo de jacobi:
+    % si cumple las conficiones, ejecuta el metodo de jacobi %
     else
     
-        % declaracion: vector inicial
+        % declaracion: vector inicial %
         x0 = zeros(m, 1);
 
-        % declaracion: matrices M y N
+        % declaracion: matrices M y N %
         M = diag((diag(A)));
         N = M - A;
 
-        % declaracion: matriz inversa de M
+        % declaracion: matriz inversa de M %
         d = diag(M);
         Minv = diag(1./d);
 
-        % asignacion: vector resultante
+        % asignacion: vector resultante %
         xk = x0;
 
-        % declaracion: tolerancia
+        % declaracion: tolerancia %
         tol = 10^-8;
 
-        % declaracion: vector de error
+        % declaracion: vector de error %
         err = tol + 1;;
         e = [];
 
-        % declaracion: numero de iteraciones realizadas
+        % declaracion: numero de iteraciones realizadas %
         iter = 0;
 
         while(tol < err)
@@ -86,8 +86,10 @@ function xk = jacobi(A, b)
             ++iter;
         end
 
+        % numero de iteraciones %
         iter
-        % grafica: 
+
+        % grafica: error vs numero de iteracioens %
         plot(1 : iter, e)
         xlabel('Iteraciones')
         ylabel('Error: (||A_x^k||)')
