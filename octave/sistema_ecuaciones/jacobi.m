@@ -13,6 +13,9 @@
 % -> M^-1 = matriz diagonal inversa
 % -> N = matriz A con diagonal de ceros y valores negativos
 %
+% Para el cálculo de la norma, se aplica la formula 
+% Euclidiana o norma 2. 
+%
 % Firma: xk = jacobi(A,b)
 % 
 % Entradas: 
@@ -60,8 +63,8 @@ function xk = jacobi(A, b)
         N = M - A;
 
         % declaracion: matriz inversa de M
-        d = diag(M)
-        Minv = diag(1./d)
+        d = diag(M);
+        Minv = diag(1./d);
 
         % asignacion: vector resultante
         xk = x0;
@@ -78,7 +81,7 @@ function xk = jacobi(A, b)
 
         while(tol < err)
             xk = (Minv * N * xk) + (Minv * b);
-            err = norm(A * xk - b)
+            err = norm(A * xk - b);
             e = [e err];
             ++iter;
         end
