@@ -7,13 +7,13 @@ function x = thomas(A, d)
         return;
     end
 
-     if( det(A) == 0)
+    if( det(A) == 0)
         display("La matriz no es invertible.")
         x = 0;
         return;
     end
 
-     if (isbanded(A,1,1) == 0)
+    if (isbanded(A,1,1) == 0)
         display("La matriz no es tridiagonal.")
          x = 0;
         return;

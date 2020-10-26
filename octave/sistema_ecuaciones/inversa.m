@@ -11,8 +11,8 @@ function x = inversa(A,b)
         end
     end
     
-    q = s / det(A)
-    x = q * b
+    q = s / det(A);
+    x = q * b;
 end
 
 % A = [1, -1, 5; 0, 3, 13; 0, 0, -13]
