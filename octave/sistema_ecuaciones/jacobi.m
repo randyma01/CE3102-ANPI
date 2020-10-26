@@ -1,4 +1,28 @@
-function [xk] = jacobi(A, b)
+% Esta funcion encuentra la solucion a un sistema 
+% de ecuaciones representado mediante la expresion:
+% A * x = b, utilizando el metodo de Jacobi.
+%
+% El metodo de Jacobi utiliza la siguiente formula:
+% -> A * x = b   
+% -> (M - N) * x = b
+% -> M * x = (N * x) + b
+% -> x = (M^-1 * N * x) + (M^-1 * b)
+% 
+% donde:
+%
+% -> M^-1 = matriz diagonal inversa
+% -> N = matriz A con diagonal de ceros y valores negativos
+%
+% Firma: xk = jacobi(A,b)
+% 
+% Entradas: 
+%   A = matriz de coeficientes
+%   b = vector de valores independientes
+%            
+% Salida:                           
+%   xk = vector de incognitas
+
+function xk = jacobi(A, b)
     % declaracion: vector resultante
     xk = [];
 
