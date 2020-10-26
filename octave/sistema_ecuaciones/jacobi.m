@@ -4,9 +4,6 @@ function [xk] = jacobi(A, b)
 
     % calculo: dimensiones de la matriz A %
     [m, n] = size(A);
-
-    % calculo: dimensiones del vector b
-    v = size(b);
     
     if (m != n)             % verificacion: matriz debe ser cuadrada %
         display("La matriz no es cuadrada.")
@@ -14,7 +11,7 @@ function [xk] = jacobi(A, b)
     elseif ( det(A) == 0)    % verificacion: matriz debe ser invertible %
         display("La matriz no es invertible.")
         return;
-    elseif (n != v(1))       % verificacion: el vector b debe coinicidir con la matriz %
+    elseif (n != size(b, 1))       % verificacion: el vector b debe coinicidir con la matriz %
         display("El vector de coeficientes no coincide.")
         return;
     else
@@ -39,7 +36,7 @@ function [xk] = jacobi(A, b)
         % declaracion: vector de error
         err = tol + 1;;
         e = [];
-        
+
         % declaracion: numero de iteraciones realizadas
         iter = 0;
 
