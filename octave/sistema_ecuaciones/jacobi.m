@@ -5,15 +5,27 @@ function [xk] = jacobi(A, b)
     % calculo: dimensiones de la matriz A %
     [m, n] = size(A);
     
-    if (m != n)             % verificacion: matriz debe ser cuadrada %
+     % verificacion: matriz debe ser cuadrada %
+    if (m != n)                    
         display("La matriz no es cuadrada.")
         return;
-    elseif ( det(A) == 0)    % verificacion: matriz debe ser invertible %
+
+    % verificacion: matriz debe ser invertible %    
+    elseif ( det(A) == 0)               
         display("La matriz no es invertible.")
         return;
-    elseif (n != size(b, 1))       % verificacion: el vector b debe coinicidir con la matriz %
+
+    % verificacion: la matriz debe ser diagnonalmente dominante
+    elseif(!vf_diag_dom(A, m))
+        display("La matriz no es diagonalmente dominante.")
+        return;
+
+    % verificacion: el vector b debe coinicidir con la matriz %
+    elseif (n != size(b, 1))           
         display("El vector de coeficientes no coincide.")
         return;
+    
+    % si cumple las conficiones, ejecuta el metodo de jacobi:
     else
     
         % declaracion: vector inicial
