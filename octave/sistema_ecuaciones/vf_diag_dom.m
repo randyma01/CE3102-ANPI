@@ -6,7 +6,8 @@
 % valores en valor absoluto del resto de la 
 % fila.
 %
-% Firma: bool = vf_diag_dom(A,b)
+% Firma: 
+%   bool = vf_diag_dom(A,b)
 % 
 % Entradas: 
 %   A = matriz de coeficientes
@@ -16,11 +17,24 @@
 %   bool = valor booleano (1 o 0)
 
 function bool = vf_diag_dom(A, m)
+
+    % declaracion: valor resultante %
     bool = 0;
 
+    % iteracion: recorrido de la matriz, mientras %
+    % se verifica por filas que la matriz sea     %
+    % diagonalmente dominante                     %
     for (i = 1 : m)
+        % declaracion: elemento de la diagonal %
         ed = abs(A(i, i));
+        
+        % declaracion: suma de los elementos de una %
+        % fila excluyendo el elemento diagonal      %
         suma = sum(abs(A(i, :))) - ed;
+        
+        % verificacion: siempre que el elemento diagonal %
+        % sea mayor sigue, en caso contrario se sale del %
+        % del ciclo                                      %
         if (suma < ed)
             bool = 1;
             continue;

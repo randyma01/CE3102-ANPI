@@ -49,7 +49,7 @@ function xk = jacobi(A, b)
 
     % verificacion: el vector b debe coinicidir con la matriz %
     elseif (n != size(b, 1))           
-        display("El vector de coeficientes no coincide.")
+        display("El vector de valores independientes no coincide.")
         return;
     
     % si cumple las conficiones, ejecuta el metodo de jacobi %
@@ -62,12 +62,12 @@ function xk = jacobi(A, b)
         xk = x0;
 
         % declaracion: matrices M y N %
-        M = diag((diag(A)));
-        N = M - A;
+        M = diag((diag(A)))
+        N = M - A
 
         % declaracion: matriz inversa de M %
-        d = diag(M);
-        Minv = diag(1./d);
+        d = diag(M)
+        Minv = diag(1./d)
 
         % declaracion: tolerancia %
         tol = 10^-8;
@@ -79,13 +79,20 @@ function xk = jacobi(A, b)
         % declaracion: numero de iteraciones realizadas %
         iter = 0;
 
-        % itereacion: mientras el error sea mayoer que la tolerancia se ejecuta %
-        % la siguiente serie %
+        % iteracion: mientras el error sea mayor que la %
+        % tolerancia se ejecuta la siguiente serie      %
         while(tol < err)
-            xk = (Minv * N * xk) + (Minv * b); % formula de jacobi
-            err = norm(A * xk - b); % calculo del error absoluto mediante la norma 2
-            e = [e err]; % actualizacion del vector de error
-            ++iter; % aumento del contador de iteraciones realizadas
+            % formula de jacobi %
+            xk = (Minv * N * xk) + (Minv * b); 
+
+            % calculo del error absoluto mediante la norma 2 %
+            err = norm(A * xk - b); 
+
+            % actualizacion del vector de error %
+            e = [e err]; 
+
+            % aumento del contador de iteraciones realizadas %
+            ++iter; 
         end
 
         % numero de iteraciones %
@@ -93,6 +100,7 @@ function xk = jacobi(A, b)
 
         % grafica: error vs numero de iteracioens %
         plot(1 : iter, e)
+        title('Error vs Iteraciones')
         xlabel('Iteraciones')
         ylabel('Error: (||A_x^k||)')
     end
