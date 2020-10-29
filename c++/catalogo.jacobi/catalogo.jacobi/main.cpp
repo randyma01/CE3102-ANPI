@@ -1,107 +1,82 @@
-#include<iostream>
-#include<stdlib.h>
-#define n 10
-using namespace std;
+#include <stdio.h>
+#include <stdlib.h>
 
+int dim;
+float norma(float vector1[],float vector2[]);
+float suma_jacobi(float Matriz[], float vector[], int componente);
 
+int main(){
+    int i,j,iteraciones=0;
+    float error,epsilon;
+    printf("\n METODO DE JACOBI DE RESOLUCION DE SISTEMAS Ax=b \n");
 
-/**
- * Prototipo de la funcion de Jacbi
- */
-void Jacobi(int l, float x[], float a[][10], float b[]);
+    printf("Dimension de la matriz A: ");
+    scanf("%d",&dim);
+    float A[dim][dim],b[dim],x[dim],x_prev[dim],aux[dim];
 
-/**
- * Funcion principal
- */
-int main() {
-    // declaracion: dimension de columnas //
+    printf("\n Elementos de la matriz A: \n");
+    for(i=0;i<dim;i++) for(j=0;j<dim;j++){
+        printf("A(%d,%d)=",i,j); scanf("%f",&A[i][j]);
+    }
+
+    printf("\n Elementos del vector b: \n");
+    for(i=0;i<dim;i++){
+        printf("b(%d)=",i); scanf("%f",&b[i]);
+    }
+
+    printf("\n Error de parada: \n");
+    printf("E=",i); scanf("%f",&epsilon);
+    error=epsilon+1;
+
+    //cominezo algoritmo de Jacobi
+    //Error se mide como la norma del vector diferenceia entre la iteracion i e i+1
+    printf("\n Valor inicail de la iteracion: \n");
+    for(i=0;i<dim;i++){
+        printf("x0(%d)=",i); scanf("%f",&x_prev[i]);
+    }
+    
+    while (error>epsilon){
+        for(i=0;i<dim;i++){
+            for(j=0;j<dim;j++){
+                aux[j]=A[i][j];
+                x[i]=(1/A[i][i])*(b[i]-suma_jacobi(aux,x_prev,i));
+            }
+        }
+        error=norma(x,x_prev);
+
+       
+
+        iteraciones++;
+        if (iteraciones==10){
+            error=epsilon-1;
+        }
+    }
+
+    printf("Solucion del sistema\n");
+    printf("Numero de iteraciones: %d \n", iteraciones);
+    for(i=0;i<dim;i++){
+        printf("x(%d)=%f\n",i,x[i]);
+    }
+    return 1;
+}
+
+float norma(float vector1[],float vector2[]){
+    float aux=0;
     int i;
-    
-    // declaracion: dimension de columnas //
-    int j;
-    
-    // declaracion: numero de ecuaciones o incognitas //
-    int l = 3;
-    
-    // declaracion: contador general //
-    int cont = 0;
-    
-    // declaracion: vector de las incognitas //
-    float x[n];
-    
-    // declaracion: matriz de los coeficientes //
-    float a[n][n] = {
-        {5, 1, 1},
-        {1, 5, 1},
-        {1, 1, 5}
-    };
-    
-    // declaracion: vector de los terminos independientes //
-    float b[n] = {7, 7, 7};
-    
-    // declaracion: valor diagonal dominante //
-    float dd = 0.0;
-    
-    // declaracion: resultado de las sumas de als filas //
-    float suma;
-   
-    // verificacion: la matriz debe ser diagonalmente dominante //
-    for(i = 0; i < l; i++){
-        suma = 0;
-        for(j = 0; j < l; j++){
-            if(i == j){
-                dd = a[i][j];
-            }else{
-                suma += a[i][j];
-            }
-        }
-        if(suma < dd){
-            cont++;
-        }
+    for(i=0;i<dim;i++){
+        aux=aux+(vector1[i]-vector2[i])*(vector1[i]-vector2[i]);
     }
-    if(cont == l){
-        Jacobi(l, x, a, b);
-    }else{
-        cout<<"La matriz no es diagonalmente dominante."<<endl;
-    }
-     return 0;
+    return aux;
 }
 
-/**
- *
- * Esta funcion encuentra la solucion a un sistema
- * de ecuaciones representado mediante la expresion:
- * % A * x = b, utilizando el metodo de Jacobi.
- *
- *
- *
- *
- */
-void Jacobi(int l, float x[], float a[][10], float b[]){
-    float c[n];
-    int k, i, j;
-   
-    for(k = 0; k < 30; k++){
-        for(i = 0;i < l; i++) {
-            c[i] = b[i];
-            for(j = 0; j < l;j++) {
-                if(i != j) {
-                    c[i] = c[i] - a[i][j] * x[j];
-                }
-            }
-        }
-        
-        for(i = 0; i < n; i++) {
-            x[i] = c[i] / a[i][i];
+float suma_jacobi(float Matriz[], float vector[], int componente)
+{
+    float aux=0;
+    int i;
+    for(i=0;i<dim;i++){
+        if (componente!=i){
+            aux=aux+Matriz[i]*vector[i];
         }
     }
-    
-    cout<<"La solucion es: "<<endl;
-    for(i = 0; i < l; i++) {
-        cout<<"x("<< i <<") = "<< x[i]<< endl;
-    }
-    
-    cout<<"Iteraciones= "<< k << endl;
+    return aux;
 }
-
-
