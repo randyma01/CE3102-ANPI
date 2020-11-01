@@ -26,4 +26,4 @@ function [x, error, k] = biseccion(f, a, b, tol)
   end
 end
 
-% [x, err, iter] = biseccion('@(x)exp(x)-x-2',0,2,10^-8)
+% [x, err, iter] = biseccion('@(x)exp(x)-x-2', 0, 2, 10^-8)

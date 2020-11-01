@@ -1,7 +1,8 @@
-function [diff_f] = lab_4(f)
-    func = str2func(f);
+function x = lab_4(f)
+    x = matlabFunction(sym(f))
+    %x = str2func(f);
     %diff_f = func(2);
-    diff_f= diff(func);
+    %diff_f= diff(func);
 end
 
-[diff_f]=lab_4('@(x)-x-2')
+% x = lab_4('@(x)-x-2')

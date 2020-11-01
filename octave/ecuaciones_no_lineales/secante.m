@@ -28,4 +28,4 @@ function [xn, k, error] = secante(f, xo, xi, tol, iterMax)
     title('Error del Metodo de la Secante')
 end
 
-% [x,k,error] = secante(exp(-(x.^2))-x,0,1,10^-8,3)
+% [x, k, error] = secante(e^(-(x.^2))-x, 0, 1, 10^-8, 3)
