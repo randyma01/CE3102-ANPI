@@ -16,4 +16,4 @@ function [xk, k, error] = punto_fijo(f, a, b, x0, tol, iterMax)
     title('Error del Metodo del Punto Fijo')
 end
 
-% [xk, k, error]= punto_fijo(log(2*x+1),0.5,1,2,10^-8,5)
+% [xk, k, error] = punto_fijo(log(2*x+1), 0.5, 1, 2, 10^-8, 5)

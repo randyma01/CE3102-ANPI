@@ -1,19 +1,18 @@
 function [x, error, k] = biseccion(f, a, b, tol)
-  func = str2func(f);
-  %func=@(x)exp(x)-x-2;
-  if (func(a) * func(b) <= 0)
+  f1 = str2func(f);
+  if (f1(a) * f1(b) <= 0)
     %tol = 10^-8;
     error = tol + 1;
     k = 0; 
     e = [];
     while (tol < error) 
       x = (a + b) / 2;
-      if (func(a) * func(x) <= 0) 
+      if (f1(a) * f1(x) <= 0) 
         b = x;
       else 
         a = x;
       end  
-      error = abs(func(x));
+      error = abs(f1(x));
       e = [e error];
       ++k;
     end

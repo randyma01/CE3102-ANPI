@@ -1,19 +1,22 @@
-function [x, k, error] = falsa_posicion(f, a, b, tol, iterMax)
-  func = matlabFunction(sym(f));
-  if (func(a) * func(b) < 0)
+function [xn, k, error] = falsa_posicion(f, xo, xi, tol, iterMax)
+  f1 = matlabFunction(sym(f));
+  if (f1(xo) * f1(xi) <= 0)
     k = 0;
     error = tol + 1;
     e = [];
     while (tol < error && k < iterMax)
-      x = b - (((b - a ) / (func(b) - func(a))) * func(b));
-      error = abs(func(x));
-      e = [e error];
-      if (func(a) * func(x) < 0)
-        b = x;
-      else
-        a = x;
-      end
-      ++k;
+        num = (xi - xo);
+        deno = (f1(xi) - f1(xo));
+        xn = xi - ((num./deno)* f1(xi));
+        % xn = xi - (((xi - xo) / (f1(xi) - f1(xo))) * f1(xi));
+        error = abs(f1(xn));
+        e = [e error];
+        if (f1(xo) * f1(xn) <= 0)
+          xi = xn;
+        else
+          xo = xn;
+        end
+        ++k;
     end
     plot(1:k, e)
     xlabel('iter (k)')
@@ -24,4 +27,4 @@ function [x, k, error] = falsa_posicion(f, a, b, tol, iterMax)
   end
 end
 
-% [x, k, error] = falsa_posicion(cos(x)-x,1/2,pi/4,10^-8,40) 
+% [x, k, error] = falsa_posicion(cos(x)-x, 1/2, pi/4, 10^-8, 40) 

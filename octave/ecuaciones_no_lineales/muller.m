@@ -42,4 +42,4 @@ function [r, k, error] = muller(f, x0, x1, x2, tol, iterMax)
     title('Error del Metodo de Muller')
 end
 
-% [r, k ,error] = muller(sin(x)-x/2,2,2.2,1.8,10^-8,3)
+% [r, k ,error] = muller(sin(x)-x/2, 2,2 .2, 1.8, 10^-8, 3)
