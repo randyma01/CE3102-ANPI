@@ -1,6 +1,6 @@
-function [xn, k, error] = secante(f, xo, xi, tol, iterMax)    
-    syms x;
-    f1 = matlabFunction(sym(f));
+function [xn, k, error] = secante(f, xo, xi, tol, iterMax)
+    f1 = str2func(f); % 1    
+    % f1 = matlabFunction(sym(f)); % 2
     k = 0;
     error = tol + 1 ;
     e = [];
@@ -28,4 +28,8 @@ function [xn, k, error] = secante(f, xo, xi, tol, iterMax)
     title('Error del Metodo de la Secante')
 end
 
+% 1
+% [x, k, error] = secante('@(x)e^(-(x.^2))-x', 0, 1, 10^-8, 3)
+
+% 2
 % [x, k, error] = secante(e^(-(x.^2))-x, 0, 1, 10^-8, 3)

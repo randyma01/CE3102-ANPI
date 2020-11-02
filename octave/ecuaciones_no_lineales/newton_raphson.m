@@ -1,6 +1,7 @@
 function [xn, k, error] = newton_raphson(f, xo, tol, iterMax)
     syms x;
-    f1 = matlabFunction(sym(f)); 
+    f1 = str2func(f); % 1
+    % f1 = matlabFunction(sym(f)); % 2
     df = matlabFunction(diff(sym(f1)));
     k = 0;
     error = tol + 1;
@@ -27,4 +28,8 @@ function [xn, k, error] = newton_raphson(f, xo, tol, iterMax)
     title('Error del Metodo de la Newton-Raphson')
 end
 
+% 1
+% [x, k, error] = newton_raphson('@(x)cos(2*x).^2-x.^2', 3/4, 10^-8, 10)
+
+% 2
 % [x, k, error] = newton_raphson(cos(2*x).^2-x.^2, 3/4, 10^-8, 10)

@@ -1,7 +1,7 @@
 function [x, error, k] = biseccion(f, a, b, tol)
-  f1 = str2func(f);
+  f1 = str2func(f); % 1
+  % f1 = matlabFunction(sym(f)); % 2
   if (f1(a) * f1(b) <= 0)
-    %tol = 10^-8;
     error = tol + 1;
     k = 0; 
     e = [];
@@ -25,4 +25,8 @@ function [x, error, k] = biseccion(f, a, b, tol)
   end
 end
 
+% 1
 % [x, err, iter] = biseccion('@(x)exp(x)-x-2', 0, 2, 10^-8)
+
+% 2
+% [x, err, iter] = biseccion(exp(x)-x-2, 0, 2, 10^-8)

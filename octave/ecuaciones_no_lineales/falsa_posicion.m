@@ -1,5 +1,6 @@
 function [xn, k, error] = falsa_posicion(f, xo, xi, tol, iterMax)
-  f1 = matlabFunction(sym(f));
+  f1 = str2func(f); % 1
+  % f1 = matlabFunction(sym(f)); % 2
   if (f1(xo) * f1(xi) <= 0)
     k = 0;
     error = tol + 1;
@@ -27,4 +28,8 @@ function [xn, k, error] = falsa_posicion(f, xo, xi, tol, iterMax)
   end
 end
 
-% [x, k, error] = falsa_posicion(cos(x)-x, 1/2, pi/4, 10^-8, 40) 
+% 1
+% [x, k, error] = falsa_posicion('@(x)cos(x)-x', 1/2, pi/4, 10^-8, 40) 
+
+% 2
+% [x, k, error] = falsa_posicion((x)cos(x)-x, 1/2, pi/4, 10^-8, 40) 

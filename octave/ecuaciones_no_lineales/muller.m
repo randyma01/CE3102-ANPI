@@ -1,5 +1,6 @@
 function [r, k, error] = muller(f, x0, x1, x2, tol, iterMax)
-    f1 = matlabFunction(sym(f));  
+    f1 = str2func(f); % 1
+    % f1 = matlabFunction(sym(f));  % 2
     k = 0;
     error = tol + 1;
     e = [];
@@ -42,4 +43,8 @@ function [r, k, error] = muller(f, x0, x1, x2, tol, iterMax)
     title('Error del Metodo de Muller')
 end
 
-% [r, k ,error] = muller(sin(x)-x/2, 2,2 .2, 1.8, 10^-8, 3)
+% 1
+% [r, k ,error] = muller('@(x)sin(x)-x/2', 2, 2.2, 1.8, 10^-8, 3)
+
+% 2 
+% [r, k ,error] = muller(sin(x)-x/2, 2, 2.2, 1.8, 10^-8, 3)
