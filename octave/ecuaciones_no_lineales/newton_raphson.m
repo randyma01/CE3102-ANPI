@@ -22,7 +22,7 @@ function [xn, k, error] = newton_raphson(f, xo, tol, iterMax)
             ++k;
         end
     end
-    plot(1:k, e)
+    plot(1 : k, e)
     xlabel('iter (k)')
     ylabel('Error (|f(x_k)|)')
     title('Error del Metodo de la Newton-Raphson')

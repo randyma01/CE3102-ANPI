@@ -16,7 +16,7 @@ function [x, error, k] = biseccion(f, a, b, tol)
       e = [e error];
       ++k;
     end
-    plot(1:k, e)
+    plot(1 : k, e)
     xlabel('iter (k)')
     ylabel('Error (|f(x_k)|)')
     title('Error del Metodo de la Biseccion')

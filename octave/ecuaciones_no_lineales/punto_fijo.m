@@ -11,7 +11,7 @@ function [xk, k, error] = punto_fijo(f, a, b, x0, tol, iterMax)
         x0 = xk;
         ++k; 
     end
-    plot(1:k, e)
+    plot(1 : k, e)
     xlabel('iter (k)')
     ylabel('Error (|f(x_k)|)')
     title('Error del Metodo del Punto Fijo')

@@ -37,7 +37,7 @@ function [r, k, error] = muller(f, x0, x1, x2, tol, iterMax)
         end
         ++k;
     end
-    plot(1:k, e)
+    plot(1 : k, e)
     xlabel('iter (k)')
     ylabel('Error (|f(x_k)|)')
     title('Error del Metodo de Muller')

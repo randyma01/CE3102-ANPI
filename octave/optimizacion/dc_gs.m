@@ -3,6 +3,7 @@ function [x_t, error, k] = dc_gs(f, t, x0, tol, iterMax)
   pkg load symbolic
   syms x y z
 
+  %f1 = str2func(f);
   fs = sym(f);
   fh = matlabFunction(fs);
 
@@ -44,4 +45,8 @@ function [x_t, error, k] = dc_gs(f, t, x0, tol, iterMax)
   
 end
 
-% [x_t, error, k] = dc_gs( x^3 + y^3 + z^3 - 2 * (x * y + x * z + y * z), ["x y z"], [1 1 1], 10^-8, 9)
+% 1
+% [x_t, error, k] = dc_gs('@(x, y, z)x^3 + y^3 + z^3 - 2 * (x * y + x * z + y * z)', ['x y z'], [1 1 1], 10^-8, 9)
+
+% 2
+% [x_t, error, k] = dc_gs( x^3 + y^3 + z^3 - 2 * (x * y + x * z + y * z), ['x y z'], [1 1 1], 10^-8, 9)

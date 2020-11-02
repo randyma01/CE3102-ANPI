@@ -19,7 +19,7 @@ function [xn, k, error] = falsa_posicion(f, xo, xi, tol, iterMax)
         end
         ++k;
     end
-    plot(1:k, e)
+    plot(1 : k, e)
     xlabel('iter (k)')
     ylabel('Error (|f(x_k)|)')
     title('Error del Metodo de la Falsa Posicion')
