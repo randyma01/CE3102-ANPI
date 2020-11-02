@@ -38,12 +38,12 @@ function xk = jacobi(A, b)
         return;
 
     % verificacion: matriz debe ser invertible %    
-    elseif ( det(A) == 0)               
+    elseif (det(A) == 0)               
         display("La matriz no es invertible.")
         return;
 
     % verificacion: la matriz debe ser diagnonalmente dominante %
-    elseif(!vf_diag_dom(A, m))
+    elseif (!vf_diag_dom(A, m))
         display("La matriz no es diagonalmente dominante.")
         return;
 
