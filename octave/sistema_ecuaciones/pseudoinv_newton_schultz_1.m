@@ -5,11 +5,11 @@ close all;
 clear;
 clc;
 
-A = [4, 2; -5, 3; 0, 1; 4, 1; 3, 0]
-%b = [1; -1; 2; -2; 3];
+A = [4, 2; -5, 3; 0, 1; 4, 1; 3, 0];
+b = [1; -1; 2; -2; 3];
 
 % Calcular Pseudoinversa de A %
-%Ap = pinv(A); % este es un commando propio de octave %
+% Ap = pinv(A); % este es un commando propio de octave %
 
 % Metodo de Newton-Schultz %
 
@@ -29,8 +29,8 @@ err = norm(A * xk * A - A, 'fro')
 % Pseudoinversa %
 Ap = xk
 
-% ** Aproximar la Solucion %
-%x = Ap * b
+% Aproximar la Solucion %
+ x = Ap * b
 
 % Error %
-%error = norm(A * x - b)
+error = norm(A * x - b)
