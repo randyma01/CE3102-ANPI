@@ -1,5 +1,4 @@
 function alphas = dif_div (vx, vy)
-    syms x;
     vx_len = length(vx);
     vy_len = length(vy);
     
@@ -15,8 +14,6 @@ function alphas = dif_div (vx, vy)
         end
     end
 
-    pn = [];
-    alphas_len = length(alphas);
 end
     
 % px = [1, 1.5, 2, 3]
