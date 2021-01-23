@@ -6,7 +6,7 @@ function pn = lagrange(vx,vy)
     pn = 0;
     
     if (vx_len !=  vy_len)
-        print ("Los dos vectores deben contener el mismo numero de elementos.");
+        dislpay("Los dos vectores deben contener el mismo numero de elementos.");
     end
     
     for (k = 0 : n)
@@ -20,4 +20,5 @@ end
 
 % px = [-2, 0, 1]
 % py = [0, 1, -1]
-% pn = lagrange (px, py)
+
+% pn = lagrange(px, py)
