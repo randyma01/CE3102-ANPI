@@ -15,11 +15,17 @@ function [I, cota]= regla_trapecio(f, a, b)
     ev = [ev sa sb];
     
     while ( j <= i)
-        j = j + 1;
         si = abs(dfs(s(i)));
         ev = [ev si];
+        ++j;
     end
 
-    cota = ((b - a)^3 / 12) * max(ev)
+    cota = ((b - a)^3 / 12) * max(ev);
     I = ((f1(b) + f1(a)) * (b - a)) / 2; 
 end
+
+% a = 2
+% b = 5
+% f = @(x) log(x)
+
+% [I, cota] = regla_trapecio(f, a, b)

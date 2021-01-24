@@ -20,11 +20,17 @@ function [I, cota]= regla_simpson(f, a, b)
     ev = [ev sa sb];
     
     while (j <= i)
-        j = j + 1;
         si = abs(dfc(s(i)));
         ev = [ev si];
+        ++j
     end
 
     cota = ((h**5 / 90) * max(ev));
     I = (h / 3) * (f1(a) + (4 * f1(c)) + f1(b));
 end
+
+% a = 2
+% b = 5
+% f = @(x) log(x)
+
+% [I, cota] = regla_simpson(f, a, b)
