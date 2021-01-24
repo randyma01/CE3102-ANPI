@@ -3,7 +3,7 @@ function [I, cota]= regla_trapecio_compuesto(f, a, b, n)
     valores = [a];
     atemp = a + h;
     
-    while (atemp< b)
+    while ( atemp < b)
         valores = [valores atemp];
         atemp = atemp + h;
     end
@@ -32,7 +32,7 @@ function [I, cota]= regla_trapecio_compuesto(f, a, b, n)
 
     res = 0;
     
-    for i=(1 : numel(valores))
+    for (i = 1 : numel(valores))
         if( i == 1 || i == (numel(valores)))
             res += f1(valores(i));
         else
@@ -41,7 +41,6 @@ function [I, cota]= regla_trapecio_compuesto(f, a, b, n)
     end
 
     I = res * (h / 2);
-
     cota = ((b - a) * (h**2) / 12) * max(ev);
 end
 
@@ -50,4 +49,4 @@ end
 % b = 5
 % n = 4
 
-% [I, cota] = regla_trapecio_compuesto(f, a, b)
+% [I, cota] = regla_trapecio_compuesto(f, a, b, n)
