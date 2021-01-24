@@ -1,4 +1,4 @@
-function L = lagrange_aux(vx,k)
+function L = lagrange_aux(vx, k)
     syms x;
     n = length(vx) - 1;
     L = 1;  
