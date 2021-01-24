@@ -11,8 +11,9 @@ def newton(f, xo, tol, iterMax):
     k = 0
     it = []
     e = []
-    while (tol < error and k < iterMax):
-        if (df.evalf(subs={x: xo}) == 0):
+
+    while tol < error and k < iterMax:
+        if df.evalf(subs={x: xo}) == 0:
             x = []
             k = []
             error = []
@@ -23,6 +24,7 @@ def newton(f, xo, tol, iterMax):
             it.append(k)
             e.append(error)
             xo = xn
+
         k += 1
     matplotlib.pyplot.plot(it, e)
     ans = {

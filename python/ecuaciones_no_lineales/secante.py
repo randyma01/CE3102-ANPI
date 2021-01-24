@@ -10,10 +10,11 @@ def secante(f, xo, xi, tol, iterMax):
     k = 0
     it = []
     e = []
-    while (tol < error and k < iterMax):
+    while tol < error and k < iterMax:
         nume = (xi - xo)
         deno = f1.evalf(subs={x: xi})-f1.evalf(subs={x: xo})
-        if(deno == 0):
+
+        if deno == 0:
             it = []
             e = []
             print("La funcion se indefine.")
@@ -24,6 +25,7 @@ def secante(f, xo, xi, tol, iterMax):
             e.append(error)
             xo = xi
             xi = xn
+
         k += 1
     matplotlib.pyplot.plot(it, e)
     ans = {

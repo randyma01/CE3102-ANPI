@@ -1,10 +1,12 @@
 function [xn, k, error] = falsa_posicion(f, xo, xi, tol, iterMax)
   f1 = str2func(f); % 1
   % f1 = matlabFunction(sym(f)); % 2
+
   if (f1(xo) * f1(xi) <= 0)
     k = 0;
     error = tol + 1;
     e = [];
+
     while (tol < error && k < iterMax)
         num = (xi - xo);
         deno = (f1(xi) - f1(xo));
@@ -12,6 +14,7 @@ function [xn, k, error] = falsa_posicion(f, xo, xi, tol, iterMax)
         % xn = xi - (((xi - xo) / (f1(xi) - f1(xo))) * f1(xi));
         error = abs(f1(xn));
         e = [e error];
+
         if (f1(xo) * f1(xn) <= 0)
           xi = xn;
         else
@@ -19,6 +22,7 @@ function [xn, k, error] = falsa_posicion(f, xo, xi, tol, iterMax)
         end
         ++k;
     end
+    
     plot(1 : k, e)
     xlabel('iter (k)')
     ylabel('Error (|f(x_k)|)')

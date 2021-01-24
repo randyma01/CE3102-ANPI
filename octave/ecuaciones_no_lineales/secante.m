@@ -4,9 +4,11 @@ function [xn, k, error] = secante(f, xo, xi, tol, iterMax)
     k = 0;
     error = tol + 1 ;
     e = [];
+
     while (tol < error && k < iterMax)
         num = (xi - xo);
         deno = (f1(xi) - f1(xo));
+
         if (deno == 0)
             x = [];
             k = [];
@@ -22,6 +24,7 @@ function [xn, k, error] = secante(f, xo, xi, tol, iterMax)
             ++k;
         end
     end
+    
     plot(1 : k, e)
     xlabel('iter (k)')
     ylabel('Error (|f(x_k)|)')

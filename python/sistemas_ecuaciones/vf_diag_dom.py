@@ -39,7 +39,7 @@ def vf_diag_dom(a, m):
         # verificacion: siempre que el elemento diagonal #
         # sea mayor sigue, en caso contrario se sale del #
         # del ciclo                                      #
-        if (suma < ed):
+        if suma < ed:
             bool = True
             continue
         else:

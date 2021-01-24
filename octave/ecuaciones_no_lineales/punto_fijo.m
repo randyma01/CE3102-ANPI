@@ -1,9 +1,11 @@
 function [xk, k, error] = punto_fijo(f, a, b, x0, tol, iterMax)
     f1 = str2func(f); % 1    
     % f1 = matlabFunction(sym(f)); % 2
+
     k = 0;
     error = tol + 1;
     e = [];
+
     while (tol < error && k < iterMax)
         xk= f1(x0);
         error = abs(f1(xk) - xk);
@@ -11,6 +13,7 @@ function [xk, k, error] = punto_fijo(f, a, b, x0, tol, iterMax)
         x0 = xk;
         ++k; 
     end
+    
     plot(1 : k, e)
     xlabel('iter (k)')
     ylabel('Error (|f(x_k)|)')

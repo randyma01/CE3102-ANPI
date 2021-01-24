@@ -7,12 +7,14 @@ def falsa_posicion(f, a, b, tol, iterMax):
     funcion = sympify(f)
     fa = funcion.subs('x', a)
     fb = funcion.subs('x', b)
-    if (fa * fb <= 0):
+
+    if fa * fb <= 0:
         error = tol + 1
         k = 0
         it = []
         e = []
-        while (tol < error and k < iterMax):
+
+        while tol < error and k < iterMax:
             fa = funcion.subs('x', a)
             fb = funcion.subs('x', b)
             x = b - (((b - a) / (fb - fa)) * fb)
@@ -27,11 +29,13 @@ def falsa_posicion(f, a, b, tol, iterMax):
             else:
                 a = x
             k += 1
+
     else:
         x = []
         k = []
         error = []
         print("No cumple la condición del Teorema de Bolzano.")
+
     matplotlib.pyplot.plot(it, e)
     ans = {
         "x": x,

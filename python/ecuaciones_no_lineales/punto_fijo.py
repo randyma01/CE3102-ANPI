@@ -10,13 +10,15 @@ def punto_fijo(p, xo, a, b, tol, iterMax):
     k = 0
     it = []
     e = []
-    while (tol < error and k < iterMax):
+
+    while tol < error and k < iterMax:
         xk = f1.evalf(subs={x: xo})
         error = abs((f1.evalf(subs={x: xk})) - xk)
         e.append(error)
         it.append(k)
         xo = xk
         k += 1
+
     matplotlib.pyplot.plot(it, e)
     ans = {
         "x": xk,

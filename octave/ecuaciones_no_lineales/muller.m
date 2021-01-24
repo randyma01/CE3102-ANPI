@@ -4,21 +4,25 @@ function [r, k, error] = muller(f, x0, x1, x2, tol, iterMax)
     k = 0;
     error = tol + 1;
     e = [];
+
     while (tol < error && k < iterMax)
         a = (((x1-x2) * (f1(x0) - f1(x2))) - ((x0 - x2) * (f1(x1) - f1(x2)))) / ((x0 - x1) * (x0 - x2) * (x1 - x2));
         b = ((((x0 - x2).^2) * (f1(x1) - f1(x2))) - (((x1 - x2).^2) * (f1(x0) - f1(x2)))) / ((x0 - x1) * (x0 - x2) * (x1 - x2));
         c = f1(x2);
         dis = sqrt((b.^2) - 4 * a * c);
+
         if (b < 0)
             r = x2 - ((2 * c) / ( b - dis))
         else
             r = x2 - ((2 * c) / (b + dis))
         end
+
         error = abs(f1(r));
         e = [e error];
         d1 = abs(x0 - r);
         d2 = abs(x1 - r);
         d3 = abs(x2 - r);
+
         if(max([d1 d2 d3]) == d1)
             [s] = sort([r x1 x2]);
             x0 = s(1);
@@ -37,6 +41,7 @@ function [r, k, error] = muller(f, x0, x1, x2, tol, iterMax)
         end
         ++k;
     end
+    
     plot(1 : k, e)
     xlabel('iter (k)')
     ylabel('Error (|f(x_k)|)')

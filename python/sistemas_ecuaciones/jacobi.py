@@ -55,16 +55,16 @@ def jacobi(A, b):
     # calculo: dimensiones de la matriz a #
     dim_b = a.shape
 
-    if (m != n):
+    if m != n:
         print("La matriz no es cuadrada.")
         return
-    elif (np.linalg.det(a) == 0):
+    elif np.linalg.det(a) == 0:
         print("La matriz no es invertible.")
         return
     # elif(not vf_diag_dom(a, m)):
     #    print("La matriz no es diagonalmente dominante.")
     #    return
-    elif (n != dim_b[1]):
+    elif n != dim_b[1]:
         print("El vector de valores independientes no coincide.")
         return
     else:
@@ -106,7 +106,7 @@ def jacobi(A, b):
 
         # iteracion: mientras el error sea mayoer que la tolerancia se ejecuta #
         # la siguiente serie #
-        while(tol < err):
+        while tol < err:
             # aumento del contador de iteraciones realizadas #
             iter += 1
 

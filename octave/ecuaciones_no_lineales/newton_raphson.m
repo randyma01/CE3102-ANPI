@@ -2,12 +2,15 @@ function [xn, k, error] = newton_raphson(f, xo, tol, iterMax)
     syms x;
     f1 = str2func(f); % 1
     % f1 = matlabFunction(sym(f)); % 2
+
     df = matlabFunction(diff(sym(f1)));
     k = 0;
     error = tol + 1;
     e = [];
+
     while (tol < error && k < iterMax)
         deno = df(xo);
+        
         if (deno == 0)
             x = [];
             k = []; 
@@ -22,6 +25,7 @@ function [xn, k, error] = newton_raphson(f, xo, tol, iterMax)
             ++k;
         end
     end
+
     plot(1 : k, e)
     xlabel('iter (k)')
     ylabel('Error (|f(x_k)|)')
