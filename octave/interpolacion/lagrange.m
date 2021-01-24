@@ -1,11 +1,11 @@
-function pn = lagrange(vx,vy)
+function pn = lagrange(vx, vy)
     syms x;
-    vx_len = length(vx);
-    vy_len = length(vy);
+    len_vx = length(vx);
+    len_vy = length(vy);
     n = length(vx) - 1;
     pn = 0;
     
-    if (vx_len !=  vy_len)
+    if (len_vx !=  len_vy)
         dislpay("Los dos vectores deben contener el mismo numero de elementos.");
     end
     
