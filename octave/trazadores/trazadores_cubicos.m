@@ -48,4 +48,11 @@ function s = trazadores_cubicos(vx, vy)
 
     mat_A = diag(diag_sup, 1) + diag(diag(A)) + diag(diag_inf, -1);
 
+    % Paso 4: Solucion (mat_A * m = ui) %
+    M = thomas(mat_A, ui');
+
+    % Paso 5: Calculo Constantes ai, bi, ci, di %
+
+    
+
 end

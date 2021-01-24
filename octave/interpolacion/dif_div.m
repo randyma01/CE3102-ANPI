@@ -6,10 +6,12 @@ function alphas = dif_div (vx, vy)
         dislpay("Los dos vectores deben contener el mismo numero de elementos.");
     end
 
+    n = vx_len;
+
     alphas = vy;
 
-    for (j = 2 : vx_len)
-        for (i =  vx_len : -1 : j)
+    for (j = 2 : n)
+        for (i =  n : -1 : j)
             alphas(i) = (alphas(i) - alphas(i-1)) / (vx(i) - vx(i - j + 1));
         end
     end
