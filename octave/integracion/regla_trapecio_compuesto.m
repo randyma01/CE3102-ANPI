@@ -44,3 +44,10 @@ function [I, cota]= regla_trapecio_compuesto(f, a, b, n)
 
     cota = ((b - a) * (h**2) / 12) * max(ev);
 end
+
+% f = @(x) log(x)
+% a = 2
+% b = 5
+% n = 4
+
+% [I, cota] = regla_trapecio_compuesto(f, a, b)

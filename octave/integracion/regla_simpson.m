@@ -29,8 +29,8 @@ function [I, cota]= regla_simpson(f, a, b)
     I = (h / 3) * (f1(a) + (4 * f1(c)) + f1(b));
 end
 
+% f = @(x) log(x)
 % a = 2
 % b = 5
-% f = @(x) log(x)
 
-% [I, cota] = regla_simpson(f, a, b)
+% [I, cota] = regla_trapecio(f, a, b)

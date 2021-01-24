@@ -24,8 +24,8 @@ function [I, cota]= regla_trapecio(f, a, b)
     I = ((f1(b) + f1(a)) * (b - a)) / 2; 
 end
 
+% f = @(x) log(x)
 % a = 2
 % b = 5
-% f = @(x) log(x)
 
 % [I, cota] = regla_trapecio(f, a, b)
