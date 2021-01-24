@@ -18,8 +18,8 @@ function s = trazadores_cubicos(vx, vy)
     % Paso 2: Calcular ui %
     ui = zeros(1, vy_len - 2);
     for (i = 1 : (vy_len - 2))
-        rac_1 = (vy(i+2) - vy(i+1)) / hi(i+1);
-        frac_2 = (vy(i+1) - vy(i)) / hi(i);
+        rac_1 = (vy(i + 2) - vy(i + 1)) / hi(i + 1);
+        frac_2 = (vy(i + 1) - vy(i)) / hi(i);
         ui_t = 6 * (frac_1 - frac_2);
         ui(i) = [ui_t];
     end
@@ -31,19 +31,19 @@ function s = trazadores_cubicos(vx, vy)
     for(i = 1 : dim_A)
         for (j = 1 : dim_A)
             if (i == j)
-                A(i, j) = 2 * (hi(i) + hi(i+1));
+                A(i, j) = 2 * (hi(i) + hi(i + 1));
             end
         end
     end
 
     diag_sup = diag(A, 1);
     for (i = 1 : length(diag_sup))
-        diag_sup(i) = hi(i+1);
+        diag_sup(i) = hi(i + 1);
     end 
 
     diag_inf = diag(A, -1);
     for (i = 1 : length(diag_inf))
-        diag_inf(i) = hi(i+1);
+        diag_inf(i) = hi(i + 1);
     end 
 
     mat_A = diag(diag_sup, 1) + diag(diag(A)) + diag(diag_inf, -1);
