@@ -50,3 +50,11 @@ function [I ,cota]= simpson_compuesta(f,a,b,n)
     cota = (((b - a) * (h**4)) / 180) * max(ev);
     I = (h / 3) * res;
 end
+
+
+% f = @(x) log(x)
+% a = 2
+% b = 5
+% n = 4
+
+% [I, cota] = regla_simpson_compuesto(f, a, b, n)
