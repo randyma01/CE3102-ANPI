@@ -25,14 +25,27 @@ function s = trazadores_cubicos(vx, vy)
     end
 
     % Paso 3: Construir Matriz A %
-    A = zeros(vx_len, vx_len);
+    dim_A = vx_len - 2;
 
-    for(i = 1 = (vx_len - 1))
-        for (j = 1 : (vx_len - 1))
-            A(i, j) = 2(h(i) + h(i+1))
+    A = zeros(dim_A, dim_A);
+    for(i = 1 : dim_A)
+        for (j = 1 : dim_A)
+            if (i == j)
+                A(i, j) = 2 * (hi(i) + hi(i+1));
+            end
         end
     end
 
+    diag_sup = diag(A, 1);
+    for (i = 1 : length(diag_sup))
+        diag_sup(i) = hi(i+1);
+    end 
 
+    diag_inf = diag(A, -1);
+    for (i = 1 : length(diag_inf))
+        diag_inf(i) = hi(i+1);
+    end 
+
+    mat_A = diag(diag_sup, 1) + diag(diag(A)) + diag(diag_inf, -1);
 
 end
