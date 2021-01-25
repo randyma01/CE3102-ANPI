@@ -4,12 +4,12 @@ function I = cuadratura_gaussiana(f, a, b, n)
     expr = f;
     expr = subs(expr, x, ((b - a) / 2) * x + (( b + a) / 2));
     fx = matlabFunction(sym(expr));
-    i = 1;
+   
     res = 0;
 
-    while(i <= n)
+    for(i = 1 : n)
         res += fx(ceros(i));
-        ++1;
+        ++i;
     end
 
     I = res * ((b - a) / 2);
